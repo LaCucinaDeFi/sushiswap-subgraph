@@ -1,6 +1,6 @@
 specVersion: 0.0.3
-description: Exchange
-repository: https://github.com/sushiswap/sushiswap-subgraph
+description: La Cucina redefines DeFi! In the mood for Sushi? Gain even more Yields in Sushi Swap through La Cucina.
+repository: https://github.com/la-cucina/sushiswap-subgraph
 schema:
   file: ./schema.graphql
 dataSources:
@@ -57,6 +57,7 @@ templates:
         - Token
         - Transaction
         - User
+        - LPTransferEntity
       abis:
         - name: Pair
           file: ../../node_modules/@sushiswap/core/build/abi/UniswapV2Pair.json

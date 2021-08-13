@@ -20,7 +20,9 @@ import {
   Swap,
   Token,
   Transaction,
+  LPTransferEntity,
 } from "../../../generated/schema";
+
 import {
   Burn as BurnEvent,
   Mint as MintEvent,
@@ -182,6 +184,26 @@ function isCompleteMint(mintId: string): boolean {
 }
 
 export function onTransfer(event: TransferEvent): void {
+
+  // get or create Trasnfer
+  const transferEntity = new LPTransferEntity(event.transaction.index.toHex() + '_' + event.transaction.hash.toHex());
+
+  // assign event data to transfer entity
+  transferEntity.from = event.params.from;
+  transferEntity.tokenAddress = event.address;
+  transferEntity.to = event.params.to;
+  transferEntity.value = event.params.value;
+  transferEntity.timestamp = event.block.timestamp;
+
+  // save entity in store
+  transferEntity.save();
+
+  log.info('Transfer event- from: {}, to: {}, value: {}', [
+    event.params.from.toHexString(),
+    event.params.to.toHexString(),
+    event.params.value.toString(),
+  ]);
+  
   // ignore initial transfers for first adds
   if (
     event.params.to == ADDRESS_ZERO &&

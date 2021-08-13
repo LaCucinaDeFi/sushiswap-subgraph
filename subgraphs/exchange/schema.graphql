@@ -479,3 +479,13 @@ type Swap @entity {
   # derived info
   amountUSD: BigDecimal!
 }
+
+type LPTransferEntity @entity {
+  "unique identifier and primary key of the entity"
+  id: ID!
+  tokenAddress: Bytes! #address
+  from: Bytes! # address
+  to: Bytes! # address
+  value: BigInt!
+  timestamp: BigInt! 
+}

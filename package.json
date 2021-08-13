@@ -8,6 +8,7 @@
   "scripts": {
     "build": "yarn workspaces run build",
     "codegen": "yarn workspaces run codegen",
+    "deploy": "./scripts/deploy.sh",
     "prepare:bsc": "yarn workspaces run prepare:bsc",
     "prepare:fantom": "yarn workspaces run prepare:fantom",
     "prepare:goerli": "yarn workspaces run prepare:goerli",
